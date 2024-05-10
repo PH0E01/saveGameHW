@@ -17,14 +17,20 @@ public class Main {
         filesToZip.add("C://GameHW/saveGame3.txt");
 
         GameProgress.zipFiles("C://GameHW/saveGame/zip.zip", filesToZip);
-
-
-        File[] files = new File("saveGames").listFiles();
+        File[] files = new File("C:/GameHW").listFiles();
         for (File file : files) {
-            if (!filesToZip.contains(file.getPath())) {
+            System.out.println(file.getPath());
+            if (!filesToZip.contains(file.getPath().replace("\\","/"))) {
                 file.delete();
                 System.out.println(file.getName() + " deleted!");
             }
+
+//        File[] files = new File("saveGames").listFiles();
+//        for (File file : files) {
+//            if (!filesToZip.contains(file.getPath())) {
+//                file.delete();
+//                System.out.println(file.getName() + " deleted!");
+//            }
         }
     }
 }

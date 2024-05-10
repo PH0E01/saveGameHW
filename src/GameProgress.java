@@ -42,10 +42,24 @@ public class GameProgress implements Serializable {
     }
 
     public static void zipFiles(String pathToZipFile, ArrayList<String> filesToZip) {
+
+        //try {
+        //    File file = new File(pathToFile);
+        //    if (file.createNewFile()) {
+        //        System.out.println("Файл создан");
+        //    } else {
+        //        System.out.println("Файл уже существует");
+        //    }
+        //} catch (IOException e) {
+        //    System.out.println("Ошибка при создании файла");
+        //    e.printStackTrace();
+        //}
+
+
         try (FileOutputStream fileOutputStream = new FileOutputStream(pathToZipFile);
              ZipOutputStream zipOutputStream = new ZipOutputStream(fileOutputStream)) {
             for (String fileToZip : filesToZip) {
-                File file = new File(String.valueOf(filesToZip));
+                File file = new File(String.valueOf(fileToZip));
                 try (FileInputStream fileInputStream = new FileInputStream(file)) {
                     ZipEntry zipEntry = new ZipEntry(file.getName());
                     zipOutputStream.putNextEntry(zipEntry);
@@ -64,6 +78,12 @@ public class GameProgress implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //FileOutputStream fileOutputStream = new FileOutputStream(pathToFile);
+        //fileOutputStream.write(this.toString().getBytes());
+        //fileOutputStream.close();
+
+
     }
 }
 
